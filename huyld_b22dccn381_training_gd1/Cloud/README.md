@@ -49,7 +49,7 @@ Hướng dẫn nhanh (Windows):
 
 Credential helpers (Windows): Git for Windows tích hợp credential manager để lưu credential an toàn. Có thể bật bằng `git config --global credential.helper manager-core`.
 
-![git config](Cloud/image/git-config.png)
+![git config](image/git-config.png)
 
 # Phần 2: Làm việc với repository
 ## 4. Khởi tạo và clone repository
@@ -108,6 +108,8 @@ Fix login bug when username contains spaces
 Trim username input before validation to avoid authentication
 failures caused by leading/trailing spaces. Add unit test.
 ```
+
+![How git works](image/how%20git%20work.png)
 
 # Phần 3: Làm việc với lịch sử và phiên bản
 ## 7. Xem lịch sử commit
@@ -263,6 +265,9 @@ Rebase:
 	- Lưu lại commit: tạm thời lưu lại tất cả commit ở nhánh hiện tại kể từ thời điểm chung đó.
 	- Nhảy sang commit cuối cùng của `<base>`, áp dụng lại từng commit đã lưu theo đúng thứ tự. 
 - `git rebase -i HEAD~N` : interactive rebase để squash, reword, reorder commit.
+
+![git rebase](image/git%20rebase.png)
+
 
 Squash:
 - Dùng `git rebase -i` và thay `pick` thành `squash` hoặc `s` để gộp commit lại thành một commit duy nhất.
