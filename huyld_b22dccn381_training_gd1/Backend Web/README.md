@@ -80,11 +80,15 @@ e. Toán tử truy vấn: FROM, WHERE, ORDER BY, HAVING, AND, OR,...
 `WHERE` được xử lý trước `GROUP BY`
 
 
-# Phần 2: OOP
-3. OOP trong Java  
+# Phần 2: OOP (Khá dài, nên sẽ có 1 file README.md riêng cho OOP)
+3. OOP trong Java 
 a. Java cơ bản (object, class, abstract class, interface, biến, hàm, I/O, vòng lặp, thao tác file)  
 b. 4 tính chất của OOP
 
+
+------
 4. Dependency Injection(DI), Inversion of Control(Ioc) 
 - Khái niệm, ví dụ? (implement DI/IoC có thể bằng Java, C#,...)
 - Tìm hiểu thêm: Ứng dụng DI, IoC trong Spring
+
+**Note: Link báo cáo OOP**: [Tìm hiểu về OOP](OOP.md)
