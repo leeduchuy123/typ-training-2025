@@ -14,7 +14,7 @@ import java.util.Map;
 @CrossOrigin(origins = "*")
 public class LoginController {
 
-    private final String BASE_URL = "http://localhost:5173";
+    private final String BASE_URL = "https://typ-training-2025-ecru.vercel.app";
 
     @Autowired
     private RedisService redisService;
