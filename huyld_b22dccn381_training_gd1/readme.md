@@ -95,3 +95,8 @@ Thay vì Client phải hỏi Server liên tục (Polling), chúng ta sẽ thiế
 - Tiết kiệm tài nguyên CPU cho việc xử lý handshake liên tục.
 
 ---
+## Những việc chưa hoàn tất
+- Chưa hosting được website lên Internet 
+- Vấn đề: Vercel chỉ hosting được Frontend, trong khi để các thiết bị khác (dùng mạng khác) quét và gửi request được đến hệ thống thì bắt buộc phải hosting cả backend.
+- Việc đang làm: Tìm hiểu cách hosting cả hệ thống. Đang bắt đầu tìm hiểu về cloud
+- Mục tiêu cần làm: Hosting được toàn bộ hệ thống lên Internet một cách thành công.
