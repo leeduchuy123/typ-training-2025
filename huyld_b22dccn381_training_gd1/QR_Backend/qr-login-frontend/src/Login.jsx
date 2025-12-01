@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import axios from 'axios';
 import { QRCode, Result, Button } from 'antd';
 
@@ -10,10 +10,12 @@ function Login() {
     const [username, setUsername] = useState('');
     const [qrData, setQrData] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    //-Make time counter UI
+    const [qrCountdown, setQrCountdown] = useState(QR_REFRESH_INTERVAL / 1000);
+    const countdownRef = useRef();
     
     // --- CÁC TRẠNG THÁI KẾT QUẢ ---
     const [loginSuccess, setLoginSuccess] = useState(false); 
-    // 1. SỬA: Thêm state này (Lúc trước bạn bị thiếu dòng này gây lỗi)
     const [loginRejected, setLoginRejected] = useState(false); 
 
     // Hàm tạo Transaction mới
@@ -77,6 +79,7 @@ function Login() {
         if (qrData && !loginSuccess && !loginRejected) {
             intervalId = setInterval(() => {
                 generateTransaction(username);
+                setQrCountdown(QR_REFRESH_INTERVAL / 1000); // Reset countdown
             }, QR_REFRESH_INTERVAL);
         }
         return () => clearInterval(intervalId);
@@ -93,6 +96,19 @@ function Login() {
         }
         return () => clearInterval(statusInterval);
     }, [qrData, checkStatus, loginSuccess, loginRejected]);
+
+    // Countdown effect
+    useEffect(() => {
+        if (!qrData || loginSuccess || loginRejected) return;
+        countdownRef.current && clearInterval(countdownRef.current);
+        countdownRef.current = setInterval(() => {
+            setQrCountdown(prev => {
+                if (prev <= 1) return QR_REFRESH_INTERVAL / 1000;
+                return prev - 1;
+            });
+        }, 1000);
+        return () => clearInterval(countdownRef.current);
+    }, [qrData, loginSuccess, loginRejected]);
 
     // --- GIAO DIỆN ---
     return (
@@ -129,7 +145,7 @@ function Login() {
                     {!qrData ? (
                         /* Form nhập Username */
                         <div style={{ maxWidth: '400px', margin: '0 auto' }}>
-                            <p>Nhập username để bắt đầu:</p>
+                            <p style={{color:"black"}}>Nhập username để bắt đầu:</p>
                             <input 
                                 type="text"
                                 placeholder="Username"
@@ -156,6 +172,26 @@ function Login() {
                                     value={qrData.qrUrl}
                                     size={256}
                                 />
+                            </div>
+                            {/* Countdown UI */}
+                            <div style={{ marginTop: '16px', width: 256, marginLeft: 'auto', marginRight: 'auto' }}>
+                                <div style={{ marginBottom: 4, color: '#555', fontSize: 14 }}>
+                                    Mã sẽ đổi sau: <b>{qrCountdown}s</b>
+                                </div>
+                                <div style={{
+                                    height: 8,
+                                    background: '#eee',
+                                    borderRadius: 4,
+                                    overflow: 'hidden',
+                                    position: 'relative'
+                                }}>
+                                    <div style={{
+                                        width: `${(qrCountdown / (QR_REFRESH_INTERVAL / 1000)) * 100}%`,
+                                        height: '100%',
+                                        background: '#1890ff',
+                                        transition: 'width 1s linear'
+                                    }} />
+                                </div>
                             </div>
 
                             <div style={{ marginTop: '20px', color: '#888' }}>
