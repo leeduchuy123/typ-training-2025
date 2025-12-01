@@ -21,4 +21,15 @@ public class LoginTransaction implements Serializable {
         this.createdAt = System.currentTimeMillis();
         this.expiredAt = this.createdAt + 15000;    // 15 giây
     }
+
+    @Override
+    public String toString() {
+        return "LoginTransaction{" +
+                "tx='" + tx + '\'' +
+                ", username='" + username + '\'' +
+                ", status='" + status + '\'' +
+                ", createdAt=" + createdAt +
+                ", expiredAt=" + expiredAt +
+                '}';
+    }
 }
