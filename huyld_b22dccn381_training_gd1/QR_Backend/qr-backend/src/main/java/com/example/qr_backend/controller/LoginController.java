@@ -14,7 +14,7 @@ import java.util.Map;
 @CrossOrigin(origins = "*")
 public class LoginController {
 
-    private final String BASE_URL = "https://typ-training-2025-backend-9x8g8y3ih-lehuyitnt03-2901s-projects.vercel.app";
+    private final String BASE_URL = "https://typ-training-2025-backend-git-week4-lehuyitnt03-2901s-projects.vercel.app";
 
     @Autowired
     private RedisService redisService;
