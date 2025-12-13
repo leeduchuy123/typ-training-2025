@@ -4,7 +4,9 @@ import { useParams, useNavigate } from 'react-router-dom'; // Thêm useNavigate
 import axios from 'axios';
 
 const { Paragraph } = Typography;
-const API_URL = 'http://localhost:8080/api/confirm';
+const API_URL = 'https://exploratory-slurringly-basil.ngrok-free.dev/api/confirm';
+ 
+
 
 function Confirm() {
     const [isLoading, setIsLoading] = useState(false);

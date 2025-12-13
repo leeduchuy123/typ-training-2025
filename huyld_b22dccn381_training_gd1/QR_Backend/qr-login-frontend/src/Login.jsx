@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import axios from 'axios';
 import { QRCode, Result, Button } from 'antd';
 
-const API_URL = 'http://localhost:8080/api/login';
+const API_URL = 'https://exploratory-slurringly-basil.ngrok-free.dev/api/login';
 const QR_REFRESH_INTERVAL = 15000; // 15 giây đổi mã 1 lần
 const STATUS_CHECK_INTERVAL = 2000; // 2 giây check trạng thái 1 lần
 
