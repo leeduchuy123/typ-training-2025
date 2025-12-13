@@ -45,7 +45,10 @@ function Login() {
         if (!qrData || !qrData.tx) return;
         try {
             const txId = qrData.tx.tx;
-            const res = await axios.get(`${API_URL}/verify/${txId}`);
+            // THÊM: ?t=${Date.now()} để chống Cache
+            const res = await axios.get(`${API_URL}/verify/${txId}?t=${Date.now()}`);
+            
+            console.log(`Check status ${txId}:`, res.data.status); // Log để kiểm tra
             
             // CASE 1: Thành công
             if (res.data.status === 'APPROVED') {
@@ -55,7 +58,7 @@ function Login() {
 
             // CASE 2: Bị từ chối (Logic dừng request)
             if (res.data.status === 'DENIED') {
-                setLoginRejected(true); // State này giờ đã được khai báo
+                setLoginRejected(true); 
                 setQrData(null);
             }
         } catch (error) {
